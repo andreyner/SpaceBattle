@@ -4,12 +4,8 @@ using System.Text;
 
 namespace SpaceBattle.Repository
 {
-	public interface IMovable
+	public interface ICommand
 	{
-		Vector Position { get; set; }
-
-		Vector Velocity { get; }
-
+		void Execute();
 	}
-
 }

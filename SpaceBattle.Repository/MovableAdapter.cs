@@ -13,20 +13,16 @@ namespace SpaceBattle.Repository
 			_obj = obj;
 		}
 
-		public Vector GetPosition()
+		public Vector Position
 		{
-			return (Vector)_obj["position"];
+			get { return (Vector)_obj["position"]; }
+			set
+			{
+				_obj["position"] = value;
+			}
 		}
 
-		public Vector GetVelocity()
-		{
-			return (Vector)_obj["velocity"];
-		}
-		
+		public Vector Velocity => (Vector)_obj["velocity"];
 
-		public void SetPosition(Vector newValue)
-		{
-			_obj["position"] = newValue;
-		}
 	}
 }

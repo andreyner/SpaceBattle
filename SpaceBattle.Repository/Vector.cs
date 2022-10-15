@@ -7,31 +7,32 @@ namespace SpaceBattle.Repository
 {
 	public class Vector
 	{
-		private int[] items;
+		private int[] points;
 
 		public Vector(int[] items)
 		{
-			this.items = items;
+			this.points = items;
 		}
-		public static Vector Add(Vector v1, Vector v2)
+
+		public static Vector operator +(Vector v1, Vector v2)
 		{
-			return new Vector(v1.items.Zip(v2.items, (x, y) => x + y).ToArray());
+			return new Vector(v1.points.Zip(v2.points, (x, y) => x + y).ToArray());
 		}
 
 		public static bool operator ==(Vector v1, Vector v2)
 		{
-			return v1.items.SequenceEqual(v2.items);
+			return v1.points.SequenceEqual(v2.points);
 		}
 
 		public static bool operator !=(Vector v1, Vector v2)
 		{
-			return !v1.items.SequenceEqual(v2.items);
+			return !v1.points.SequenceEqual(v2.points);
 		}
 
 		public int this[int index]
 		{
-			get => items[index];
-			set => items[index] = value;
+			get => points[index];
+			set => points[index] = value;
 		}
 	}
 }

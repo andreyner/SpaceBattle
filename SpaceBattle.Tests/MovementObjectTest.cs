@@ -14,20 +14,18 @@ namespace SpaceBattle.Tests
 		[TestMethod]
 		public void MoveObject()
 		{
-			var movableObject = new Mock<Uobject>();
-			Vector finalPosition = null;
+			var movableObject = new Mock<IMovable>();
 
-			movableObject.SetupGet(x => x["position"]).Returns(() => new Vector(new int[] { 12, 5 }));
-			movableObject.SetupGet(x => x["velocity"]).Returns(() => new Vector(new int[] { -7, 3 }));
-
-			movableObject.SetupSet(x => x["position"] = It.IsAny<Vector>()).Callback<string, object>((key, value) => finalPosition = (Vector) value);
-
-			var movableAdapter = new MovableAdapter(movableObject.Object);
-			var move = new Move(movableAdapter);
-
+			movableObject.SetupProperty(x => x.Position, new Vector(new int[] { 12, 5 }));
+			movableObject.SetupGet(x => x.Velocity).Returns(() => new Vector(new int[] { -7, 3 }));
+		
+			var move = new Move(movableObject.Object);
 			move.Execute();
 
-			Assert.IsTrue(finalPosition == new Vector(new int[] { 5, 8 }),"Неверный результат перемещения!");
+			movableObject.VerifySet(x => x.Position = It.Is<Vector>(c => c == new Vector(new int[] { 5, 8 })), "Неверный результат перемещения!");
+
+			Assert.IsTrue(true);
+
 		}
 
 		/// <summary>
@@ -36,13 +34,12 @@ namespace SpaceBattle.Tests
 		[TestMethod]
 		public void CannotReadPosition()
 		{
-			var movableObject = new Mock<Uobject>();
+			var movableObject = new Mock<IMovable>();
 
-			movableObject.SetupGet(x => x["velocity"]).Returns(() => new Vector(new int[] { -7, 3 }));
-			movableObject.SetupGet(x => x["position"]).Throws<Exception>();
+			movableObject.SetupGet(x => x.Velocity).Returns(() => new Vector(new int[] { -7, 3 }));
+			movableObject.SetupGet(x => x.Position).Throws<Exception>();
 
-			var movableAdapter = new MovableAdapter(movableObject.Object);
-			var move = new Move(movableAdapter);
+			var move = new Move(movableObject.Object);
 
 			Assert.ThrowsException<Exception>(() => move.Execute(), "Попытка сдвинуть объект, у которого невозможно прочитать положение в пространстве, удалась!");
 		}
@@ -53,13 +50,12 @@ namespace SpaceBattle.Tests
 		[TestMethod]
 		public void CannotReadVelocity()
 		{
-			var movableObject = new Mock<Uobject>();
+			var movableObject = new Mock<IMovable>();
 
-			movableObject.SetupGet(x => x["position"]).Returns(() => new Vector(new int[] { 12, 5 }));
-			movableObject.SetupGet(x => x["velocity"]).Throws<Exception>();
+			movableObject.SetupProperty(x => x.Position, new Vector(new int[] { 12, 5 }));
+			movableObject.SetupGet(x => x.Velocity).Throws<Exception>();
 
-			var movableAdapter = new MovableAdapter(movableObject.Object);
-			var move = new Move(movableAdapter);
+			var move = new Move(movableObject.Object);
 
 			Assert.ThrowsException<Exception>(() => move.Execute(), "Попытка сдвинуть объект, у которого невозможно прочитать значение мгновенной скорости, удалась!");
 		}
@@ -71,16 +67,16 @@ namespace SpaceBattle.Tests
 		[TestMethod]
 		public void CannotChangePosition()
 		{
-			var movableObject = new Mock<Uobject>();
-			movableObject.SetupGet(x => x["position"]).Returns(() => new Vector(new int[] { 12, 5 }));
-			movableObject.SetupGet(x => x["velocity"]).Returns(() => new Vector(new int[] { -7, 3 }));
+			var movableObject = new Mock<IMovable>();
 
-			movableObject.SetupSet(x => x["position"] = It.IsAny<Vector>()).Throws<Exception>();
+			movableObject.SetupProperty(x => x.Position, new Vector(new int[] { 12, 5 }));
+			movableObject.SetupGet(x => x.Velocity).Returns(() => new Vector(new int[] { -7, 3 }));
 
-			var movableAdapter = new MovableAdapter(movableObject.Object);
-			var move = new Move(movableAdapter);
+			movableObject.SetupSet(x => x.Position = It.IsAny<Vector>()).Throws<Exception>();
 
-			Assert.ThrowsException<Exception>(() => move.Execute(), "Попытка сдвинуть объект, у которого невозможно прочитать значение мгновенной скорости, удалась!");
+			var move = new Move(movableObject.Object);
+
+			Assert.ThrowsException<Exception>(() => move.Execute(), "Попытка сдвинуть объект, у которого невозможно изменить положение в пространстве, удалась!");
 		}
 	}
 }

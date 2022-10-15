@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SpaceBattle.Repository
 {
-	public class Move
+	public class Move: ICommand
 	{
 		IMovable _movable;
 
@@ -15,9 +15,8 @@ namespace SpaceBattle.Repository
 
 		public void Execute()
 		{
-			_movable.SetPosition(
-				 Vector.Add(_movable.GetPosition(), _movable.GetVelocity())
-				);
+			_movable.Position += _movable.Velocity;
+	
 		}
 	}
 }
