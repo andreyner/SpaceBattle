@@ -13,29 +13,24 @@ namespace SpaceBattle.Repository
 			_obj = obj;
 		}
 
-		public int GetAngle()
+		public int Direction
 		{
-			return (int)_obj["rotationAngle"];
+			get { return (int)_obj["direction"]; }
+			set
+			{
+				_obj["direction"] = value;
+			}
 		}
 
-		public Vector GetPivotPointer()
+		public int DirectionsNumber
 		{
-			return (Vector)_obj["pivotPointer"];
+			get { return (int)_obj["directionNumber"]; }
 		}
 
-		public Vector[] GetPosition()
+		public int AngularVelocity
 		{
-			return (Vector[])_obj["turningPointers"];
+			get { return (int)_obj["angularVelocity"]; }
 		}
 
-		public void SetAngle(int angle)
-		{
-			_obj["rotationAngle"] = angle;
-		}
-
-		public void SetPosition(Vector[] newValue)
-		{
-			_obj["turningPointers"] = newValue;
-		}
 	}
 }
