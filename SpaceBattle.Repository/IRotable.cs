@@ -6,17 +6,20 @@ namespace SpaceBattle.Repository
 {
 	public interface IRotable
 	{
-		Vector[] Position { get; set; }
 
 		/// <summary>
-		/// Возвращает точу относительно которой поворачивают точки объекта
+		/// Текущее направление
 		/// </summary>
-		Vector PivotPointer { get; }
+		int Direction { get; set; }
 
 		/// <summary>
-		/// Получить угол поворота
+		/// Количество направлений
 		/// </summary>
-		int Angle { get; set; }
+		int DirectionsNumber { get; }
 
+		/// <summary>
+		/// Угловая скорость
+		/// </summary>
+		int AngularVelocity { get; }
 	}
 }
