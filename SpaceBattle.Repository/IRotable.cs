@@ -6,6 +6,7 @@ namespace SpaceBattle.Repository
 {
 	public interface IRotable
 	{
+
 		/// <summary>
 		/// Текущее направление
 		/// </summary>

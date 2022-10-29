@@ -9,7 +9,6 @@ namespace SpaceBattle.Repository
 		Vector Position { get; set; }
 
 		Vector Velocity { get; }
-
 	}
 
 }
