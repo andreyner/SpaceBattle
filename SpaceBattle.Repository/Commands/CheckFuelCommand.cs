@@ -16,9 +16,9 @@ namespace SpaceBattle.Repository.Commands
 
 		public void Execute()
 		{
-			if (_checkFuel.FuelVolume == 0)
+			if (_checkFuel.FuelVolume - _checkFuel.FuelExpense < 0)
 			{
-				throw new CommandException("Топлива нет!");
+				throw new CommandException("Недостаточно топлива!");
 			}
 		}
 	}

@@ -7,5 +7,7 @@ namespace SpaceBattle.Repository.Commands
 	public interface ICheckFuel
 	{
 		int FuelVolume { get; }
+
+		int FuelExpense { get; }
 	}
 }
