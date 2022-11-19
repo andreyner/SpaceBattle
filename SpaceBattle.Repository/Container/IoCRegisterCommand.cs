@@ -7,21 +7,19 @@ namespace SpaceBattle.Repository.Container
 	public class IoCRegisterCommand : ICommand
 	{
 		private readonly string key;
-		private readonly object[] args;
+		private readonly Func<object[], object> strategy;
 
-		public IoCRegisterCommand(string key, params object[] args)
+		public IoCRegisterCommand(string key, Func<object[], object> strategy)
 		{
 			this.key = key;
-			this.args = args;
+			this.strategy = strategy;
 		}
 
 		public void Execute()
 		{
-			var scopeId = ScopeRepository.Value.CurrentScope.Value.Id;
-
-			if(ScopeRepository.Value.repository.TryGetValue(scopeId, out var impl))
+			if(!ScopeBaseDependencyStrategy.CurrentScope.Value!.Dependencies.TryAdd(key, strategy))
 			{
-				impl.Add((string)args[0], (Func<object[], object>)args[1]);
+				throw new System.Exception("Не удалось зарегистрировать зависимость");
 			}
 		}
 	}

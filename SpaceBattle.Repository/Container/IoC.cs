@@ -1,30 +1,29 @@
-﻿using System;
+﻿using SpaceBattle.Repository.Commands;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SpaceBattle.Repository.Container
 {
-	public class IoC : IContainer
+	public class IoC
 	{
+		internal static Func<string, object[], object> Strategy { get; set; } = DefaultStrategy;
 
-		public T Resolve<T>(string key, params object[] args)
+		public static T Resolve<T>(string key, params object[] args)
 		{
-			if(ScopeRepository.Value.repository.TryGetValue(ScopeRepository.Value.CurrentScope.Value.Id, out var store)) 
-			{		
-				if(store.TryGetValue(key, out var impl))
-				{
-					return (T)impl(args);
-				}
-				else
-				{
-					throw new System.Exception($"Не удалось найти реализацию {key}!");
-				}
+			return (T)Strategy(key, args);
+		}
+
+		private static object DefaultStrategy(string key, object[] args) 
+		{ 
+			if("IoC.SetupStrategy" == key)
+			{
+				return new SetupStrategyCommand((Func<string, object[], object>)args[0]);
 			}
 			else
 			{
-				throw new System.Exception("Не удалось найти скоуп!");
+				throw new ArgumentException("Unknown IoC dependency");
 			}
-
 		}
 	}
 }

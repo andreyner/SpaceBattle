@@ -6,16 +6,16 @@ namespace SpaceBattle.Repository.Container
 {
 	public class SetCurrentScopeCommand : ICommand
 	{
-		private readonly string scopeId;
+		private readonly Scope scope;
 
-		public SetCurrentScopeCommand(string scopeId)
+		public SetCurrentScopeCommand(Scope scope)
 		{
-			this.scopeId = scopeId;
+			this.scope = scope;
 		}
 
 		public void Execute()
 		{
-			ScopeRepository.Value.CurrentScope.Value.Id = scopeId;
+			ScopeBaseDependencyStrategy.CurrentScope.Value = scope;
 		}
 	}
 }
