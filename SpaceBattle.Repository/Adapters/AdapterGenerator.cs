@@ -13,32 +13,6 @@ namespace SpaceBattle.Repository.Adapters
 {
 	public class CodeGenerator
 	{
-		public static CodeTypeDeclaration CreateClass(string className, string nameSpace)
-		{
-			var code_namespace = new CodeNamespace(nameSpace);
-
-			var codeClass = new CodeTypeDeclaration(className);
-			code_namespace.Types.Add(codeClass);
-			code_namespace.Imports.Add(new CodeNamespaceImport("System"));
-
-			return codeClass;
-		}
-
-		public static CodeSnippetTypeMember CreateProperty(string body)
-		{
-			var snippet = new CodeSnippetTypeMember();
-			snippet.Text = body;
-
-			return snippet;
-		}
-
-		public static CodeConstructor CreateConstructor()
-		{
-			var defaultConstructor = new CodeConstructor();
-			defaultConstructor.Attributes = MemberAttributes.Public;
-
-			return defaultConstructor;
-		}
 
 		public static object CreateAdapter(Type target, params object[] paramArray)
 		{

@@ -6,6 +6,7 @@ using System.Text;
 using SpaceBattle.Repository;
 using Moq;
 using SpaceBattle.Repository.Commands;
+using SpaceBattle.Repository.Container;
 
 namespace SpaceBattle.Tests
 {
@@ -24,7 +25,7 @@ namespace SpaceBattle.Tests
 			var gameObject = new Mock<Uobject>();
 			new MoveCommandPluginCommand().Execute();
 
-			var adapter = CodeGenerator.CreateAdapter(typeof(IMovable), gameObject.Object);
+			var adapter = IoC.Resolve<IMovable>("Adapter", typeof(IMovable), gameObject.Object);
 
 			((IMovable)adapter).Position = new Vector(new int[] { -7, 3 });
 
