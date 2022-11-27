@@ -60,6 +60,11 @@ namespace SpaceBattle.Repository.Commands
 				return new IoCRegisterCommand((string)args[0], (Func<object[], object>)args[1]);
 			});
 
+			dependencies.TryAdd("SetupProperty", args =>
+			{
+				return new SetupPropertyCommand((Uobject)args[0], (string)args[1], args[2]);
+			});
+
 			ScopeBaseDependencyStrategy.Root = scope;
 
 			new SetCurrentScopeCommand(scope).Execute();
