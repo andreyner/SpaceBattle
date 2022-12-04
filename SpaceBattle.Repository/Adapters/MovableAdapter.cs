@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SpaceBattle.Repository
 {
-	public class MovableAdapter : IMovable
+	public class MovableAdapter2 : IMovable
 	{
 		Uobject _obj;
 
-		public MovableAdapter(Uobject obj)
+		public MovableAdapter2(Uobject obj)
 		{
 			_obj = obj;
 		}

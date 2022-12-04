@@ -1,4 +1,5 @@
-﻿using SpaceBattle.Repository.Container;
+﻿using SpaceBattle.Repository.Adapters;
+using SpaceBattle.Repository.Container;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -58,6 +59,16 @@ namespace SpaceBattle.Repository.Commands
 			dependencies.TryAdd("IoC.Register", args =>
 			{
 				return new IoCRegisterCommand((string)args[0], (Func<object[], object>)args[1]);
+			});
+
+			dependencies.TryAdd("SetupProperty", args =>
+			{
+				return new SetupPropertyCommand((Uobject)args[0], (string)args[1], args[2]);
+			});
+
+			dependencies.TryAdd("Adapter", args =>
+			{
+				return CodeGenerator.CreateAdapter((Type)args[0], args[1]);
 			});
 
 			ScopeBaseDependencyStrategy.Root = scope;

@@ -12,4 +12,11 @@
     <Folder Include="GameObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.4.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
+    <PackageReference Include="Microsoft.Dnx.Compilation.Abstractions" Version="1.0.0-rc1-final" />
+    <PackageReference Include="System.CodeDom" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>
