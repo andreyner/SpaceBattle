@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "task1" branch
   push:
-    branches: [ "task6" ]
+    branches: [ "task7" ]
   pull_request:
-    branches: [ "task6" ]
+    branches: [ "task7" ]
   workflow_dispatch:
 
 jobs:
