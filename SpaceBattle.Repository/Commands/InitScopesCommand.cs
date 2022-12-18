@@ -1,9 +1,12 @@
 ﻿using SpaceBattle.Repository.Adapters;
 using SpaceBattle.Repository.Container;
+using SpaceBattle.Repository.EventLoop;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SpaceBattle.Repository.Commands
 {
@@ -69,6 +72,14 @@ namespace SpaceBattle.Repository.Commands
 			dependencies.TryAdd("Adapter", args =>
 			{
 				return CodeGenerator.CreateAdapter((Type)args[0], args[1]);
+			});
+
+			dependencies.TryAdd("Thread.Start", args =>
+			{
+				var eventLoop = new EventLoop.EventLoop();
+				var task = new Thread(() => eventLoop.Start());
+				task.Start();
+				return (eventLoop: eventLoop, task: task);
 			});
 
 			ScopeBaseDependencyStrategy.Root = scope;
