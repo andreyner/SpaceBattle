@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:29488",
+      "applicationUrl": "http://localhost:55789",
       "sslPort": 0
     }
   },
@@ -14,7 +14,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SpaceBattle.GamePlayer": {
+    "SpaceBattle.TokenApp": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
