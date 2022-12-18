@@ -82,6 +82,14 @@ namespace SpaceBattle.Repository.Commands
 				return (eventLoop: eventLoop, task: task);
 			});
 
+
+			var eventLoop = new EventLoop.EventLoop();
+
+			dependencies.TryAdd("QueueCommand.Get", args =>
+			{
+				return eventLoop.ActionQueue;
+			});
+
 			ScopeBaseDependencyStrategy.Root = scope;
 
 			new SetCurrentScopeCommand(scope).Execute();

@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.Tests", "..\Spa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.Repository", "..\SpaceBattle.Repository\SpaceBattle.Repository.csproj", "{5C43E190-BB50-4EBF-8115-1343E6D3A40F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.GameAgent", "..\SpaceBattle.GameAgent\SpaceBattle.GameAgent.csproj", "{A5D963D2-A278-4088-B817-400C9C575640}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.GameServer", "..\SpaceBattle.GamePlayer\SpaceBattle.GameServer.csproj", "{03D08CF4-E301-4085-9989-05A9588AABCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBattle.Model", "..\SpaceBattle.Model\SpaceBattle.Model.csproj", "{2A870DF8-5B26-45E2-A4FC-63768F257A62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,18 @@ Global
 		{5C43E190-BB50-4EBF-8115-1343E6D3A40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C43E190-BB50-4EBF-8115-1343E6D3A40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C43E190-BB50-4EBF-8115-1343E6D3A40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D963D2-A278-4088-B817-400C9C575640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D963D2-A278-4088-B817-400C9C575640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D963D2-A278-4088-B817-400C9C575640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D963D2-A278-4088-B817-400C9C575640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D08CF4-E301-4085-9989-05A9588AABCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D08CF4-E301-4085-9989-05A9588AABCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D08CF4-E301-4085-9989-05A9588AABCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D08CF4-E301-4085-9989-05A9588AABCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
