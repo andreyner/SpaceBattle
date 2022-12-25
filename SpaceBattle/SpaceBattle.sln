@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.GameAgent", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.GameServer", "..\SpaceBattle.GamePlayer\SpaceBattle.GameServer.csproj", "{03D08CF4-E301-4085-9989-05A9588AABCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBattle.Model", "..\SpaceBattle.Model\SpaceBattle.Model.csproj", "{2A870DF8-5B26-45E2-A4FC-63768F257A62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceBattle.Model", "..\SpaceBattle.Model\SpaceBattle.Model.csproj", "{2A870DF8-5B26-45E2-A4FC-63768F257A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBattle.TokenApp", "..\SpaceBattle.TokenApp\SpaceBattle.TokenApp.csproj", "{884BE557-B5A4-4935-9D75-0F7508D64DDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A870DF8-5B26-45E2-A4FC-63768F257A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{884BE557-B5A4-4935-9D75-0F7508D64DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884BE557-B5A4-4935-9D75-0F7508D64DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884BE557-B5A4-4935-9D75-0F7508D64DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884BE557-B5A4-4935-9D75-0F7508D64DDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

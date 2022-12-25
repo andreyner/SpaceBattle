@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using SpaceBattle.Model;
 using SpaceBattle.Repository.Commands;
 
 namespace SpaceBattle.GameServer
@@ -14,6 +17,7 @@ namespace SpaceBattle.GameServer
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddHostedService<RabbitMqListener>();
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,10 +32,7 @@ namespace SpaceBattle.GameServer
 
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapGet("/", async context =>
-				{
-					await context.Response.WriteAsync("Hello World! GameServer");
-				});
+				endpoints.MapControllers();
 			});
 
 			new InitScopesCommand().Execute();
