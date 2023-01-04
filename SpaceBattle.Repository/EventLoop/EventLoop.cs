@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceBattle.Repository.State;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,8 @@ namespace SpaceBattle.Repository.EventLoop
         private CancellationToken cancleToken;
 
         private CancellationTokenSource cancelTokenSource;
+
+        public CommandState commandState;
         public EventLoop()
         {
             ActionQueue = new ConcurrentQueue<ICommand>();
@@ -23,6 +26,7 @@ namespace SpaceBattle.Repository.EventLoop
 
             cancelTokenSource = new CancellationTokenSource();
             cancleToken = cancelTokenSource.Token;
+            commandState = new CommandState();
         }
 
         public void Loop()
@@ -33,7 +37,7 @@ namespace SpaceBattle.Repository.EventLoop
                 {
                     try
                     {
-                        Task.Factory.StartNew(() => action.Execute());
+                        commandState.Execute(action);
                     }
                     catch (System.Exception ex)
                     {
