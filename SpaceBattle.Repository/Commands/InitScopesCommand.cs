@@ -1,4 +1,5 @@
 ﻿using SpaceBattle.Repository.Adapters;
+using SpaceBattle.Repository.Collision;
 using SpaceBattle.Repository.Container;
 using SpaceBattle.Repository.EventLoop;
 using System;
@@ -90,9 +91,28 @@ namespace SpaceBattle.Repository.Commands
 				return eventLoop.ActionQueue;
 			});
 
+			RegisterSectorCheckCommand(dependencies);
+			RegisterObjectCollisionCheckCommand(dependencies);
+
 			ScopeBaseDependencyStrategy.Root = scope;
 
 			new SetCurrentScopeCommand(scope).Execute();
+		}
+
+		private void RegisterSectorCheckCommand(ConcurrentDictionary<string, Func<object[], object>> dependencies)
+		{
+			dependencies.TryAdd("SectorCheckCommand", args =>
+			{
+				return new SectorCheckCommand((Uobject)args[0], (Sector)args[1]);
+			});
+		}
+
+		private void RegisterObjectCollisionCheckCommand(ConcurrentDictionary<string, Func<object[], object>> dependencies)
+		{
+			dependencies.TryAdd("ObjectCollisionCheckCommand", args =>
+			{
+				return new ObjectCollisionCheckCommand((Uobject)args[0], (Uobject)args[1]);
+			});
 		}
 	}
 }
