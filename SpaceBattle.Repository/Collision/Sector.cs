@@ -3,7 +3,6 @@ using SpaceBattle.Repository.MacroCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SpaceBattle.Repository.Collision
 {
@@ -24,7 +23,6 @@ namespace SpaceBattle.Repository.Collision
             Neighbor = neighbor;
             Coordinates = coordinates;
             Spaceships = new List<Uobject>();
-            CollisionsCheckMacroCommand = null;
         }
 
         /// <summary>
@@ -78,7 +76,7 @@ namespace SpaceBattle.Repository.Collision
 
             foreach (var sectorSpaceship in Spaceships)
             {
-                ObjectCollisionCheckCommand objectCollisionCheckCommand = IoC.Resolve<ObjectCollisionCheckCommand>("ObjectCollisionCheckCommand", sectorSpaceship, spaceship);
+                var objectCollisionCheckCommand = IoC.Resolve<ObjectCollisionCheckCommand>("ObjectCollisionCheckCommand", sectorSpaceship, spaceship);
                 commands.Add(objectCollisionCheckCommand);
             }
 

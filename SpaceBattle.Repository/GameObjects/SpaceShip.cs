@@ -8,8 +8,15 @@ namespace SpaceBattle.Repository.GameObjects
 	{
 		public override object this[string key]
 		{
-			get => this[key];
-			set => this[key] = value;
+			get
+			{
+				return values[key];
+			}
+
+			set
+			{
+				values.Add(key, value);
+			}
 		}
 	}
 }

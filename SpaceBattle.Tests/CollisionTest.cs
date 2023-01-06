@@ -4,6 +4,7 @@ using SpaceBattle.Repository.Collision;
 using SpaceBattle.Repository.Commands;
 using SpaceBattle.Repository.Container;
 using SpaceBattle.Repository.GameObjects;
+using System.Text;
 
 namespace SpaceBattle.Tests
 {
