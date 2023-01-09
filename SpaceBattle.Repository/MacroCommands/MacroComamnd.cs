@@ -8,10 +8,16 @@ namespace SpaceBattle.Repository.MacroCommands
 	public class MacroComamnd: ICommand
 	{
 		private readonly ICommand[] _commands;
+		private List<ICommand> commands;
 
 		public MacroComamnd(ICommand [] commands)
 		{
 			_commands = commands;
+		}
+
+		public MacroComamnd(List<ICommand> commands)
+		{
+			this.commands = commands;
 		}
 
 		public void Execute()

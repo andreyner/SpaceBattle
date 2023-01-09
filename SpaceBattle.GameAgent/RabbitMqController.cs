@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpaceBattle.Model;
+using SpaceBattle.Repository.GameObjects;
 
 namespace SpaceBattle.GameAgent
 {
@@ -26,7 +27,7 @@ namespace SpaceBattle.GameAgent
 		}
 
 		[HttpPost]
-		public IActionResult SendMessage(CommandMessage message)
+		public IActionResult SendMessage(UobjectDto message)
 		{
 			_mqService.SendMessage(message);
 
