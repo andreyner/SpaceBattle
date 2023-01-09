@@ -17,6 +17,7 @@ namespace SpaceBattle.GameServer
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddHostedService<RabbitMqListener>();
+			services.AddControllers();
 
 		}
 

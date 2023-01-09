@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SpaceBattle.Repository.GameObjects
 {
-	public class SpaceShip : Uobject
+	public class SpaceShip : GameObject
 	{
 		public override object this[string key]
 		{

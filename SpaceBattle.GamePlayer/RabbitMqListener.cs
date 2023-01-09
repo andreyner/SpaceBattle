@@ -5,6 +5,8 @@ using RabbitMQ.Client.Events;
 using SpaceBattle.Model;
 using SpaceBattle.Repository;
 using SpaceBattle.Repository.Container;
+using SpaceBattle.Repository.GameObjects;
+using SpaceBattle.Repository.Interpretator;
 using SpaceBattle.Repository.RabbitMq;
 using System;
 using System.Collections.Concurrent;
@@ -41,11 +43,11 @@ namespace SpaceBattle.GameServer
 
 				var content = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-				var message = JsonConvert.DeserializeObject<CommandMessage>(content);
+				var message = JsonConvert.DeserializeObject<UobjectDto>(content);
 
-				var currentQueue = IoC.Resolve<ConcurrentQueue<ICommand>>("QueueCommand.Get");
+				var interpretCmd = IoC.Resolve<ICommand>("Interpretator", message);
 
-				currentQueue.Enqueue(new InetrpretCommand(message));
+				interpretCmd.Execute();
 
 			};
 

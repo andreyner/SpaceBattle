@@ -1,7 +1,10 @@
-﻿using SpaceBattle.Repository.Adapters;
+﻿using SpaceBattle.Model;
+using SpaceBattle.Repository.Adapters;
 using SpaceBattle.Repository.Collision;
 using SpaceBattle.Repository.Container;
 using SpaceBattle.Repository.EventLoop;
+using SpaceBattle.Repository.GameObjects;
+using SpaceBattle.Repository.Interpretator;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -91,8 +94,15 @@ namespace SpaceBattle.Repository.Commands
 				return eventLoop.ActionQueue;
 			});
 
+			dependencies.TryAdd("Interpretator", args =>
+			{
+				return new InterpretatorCommand((UobjectDto)args[0]);
+			});
+
 			RegisterSectorCheckCommand(dependencies);
 			RegisterObjectCollisionCheckCommand(dependencies);
+			RegisterGameRepository(dependencies);
+			RegisterGameCommandy(dependencies);
 
 			ScopeBaseDependencyStrategy.Root = scope;
 
@@ -112,6 +122,26 @@ namespace SpaceBattle.Repository.Commands
 			dependencies.TryAdd("ObjectCollisionCheckCommand", args =>
 			{
 				return new ObjectCollisionCheckCommand((Uobject)args[0], (Uobject)args[1]);
+			});
+		}
+
+		private void RegisterGameRepository(ConcurrentDictionary<string, Func<object[], object>> dependencies)
+		{
+			var gameRepository = new GameRepository();
+
+			dependencies.TryAdd("GameRepository.Get", args =>
+			{
+				return gameRepository;
+			});
+		}
+
+		private void RegisterGameCommandy(ConcurrentDictionary<string, Func<object[], object>> dependencies)
+		{
+			var gameRepository = new GameRepository();
+
+			dependencies.TryAdd("Move", args =>
+			{
+				return new Move(new MovableAdapter2((Uobject)args[0]));
 			});
 		}
 	}
